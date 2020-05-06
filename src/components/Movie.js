@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 export class Movie extends Component{
     render(){
-        const { poster,title,year } = this.props;
+        const { id,poster,title,year } = this.props;
         
         return(
             <React.Fragment>
-            <div className="card">
+            <a href={`?id=${id}`} className="card">
               <div className="card-image">
                 <figure className="image">
                   <img src={poster} alt={poster}/>
@@ -20,7 +20,7 @@ export class Movie extends Component{
                   </div>
                 </div>
                 </div>
-                </div>
+                </a>
                 </React.Fragment>  
         )
     }

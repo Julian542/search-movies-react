@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const API_KEY ='b12a030b';
 export class Detail extends Component{
 
+    static propTypes = {
+        match:PropTypes.shape({
+            params: PropTypes.object,
+            isExact: PropTypes.bool,
+            path: PropTypes.string,
+            url: PropTypes.string
+        })
+    }
     state={movie:{}}
 
     _fetchMovie({id}){
@@ -14,20 +23,16 @@ export class Detail extends Component{
            this.setState({movie})
         })
     }
-
-    _goBack(){
-        window.history.back();
-    }
-
     componentDidMount(){
-        const {id} = this.props
+        console.log(this.props)
+        const { id } = this.props.match.params
         this._fetchMovie({id})
     }
     render(){
         const { Title,Poster,Actors,Metascore,Plot } = this.state.movie
         return(
             <React.Fragment>
-                <button onClick={this._goBack}>Back to Home</button>                
+                <Link to='/'>Back to Home</Link>                
                 <h1>{Title}</h1>
                 <img src={Poster}/>
                 <h3>{Actors}</h3>

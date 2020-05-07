@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export class Movie extends Component{
+    static propTypes ={
+      id:PropTypes.string,
+      title:PropTypes.string,
+      year:PropTypes.string,
+      poster:PropTypes.string
+    }
     render(){
         const { id,poster,title,year } = this.props;
         
         return(
-            <React.Fragment>
-            <a href={`?id=${id}`} className="card">
+            
+            <Link to={`/detail/${id}`} className="card">
               <div className="card-image">
                 <figure className="image">
                   <img src={poster} alt={poster}/>
@@ -20,8 +28,8 @@ export class Movie extends Component{
                   </div>
                 </div>
                 </div>
-                </a>
-                </React.Fragment>  
+                </Link>
+               
         )
     }
 }
